@@ -10,9 +10,10 @@ main_directory = os.path.split(os.path.abspath(__file__))[0] # Gets current dire
 
 
 session_id = [REDACTED]
+username = [USERNAME]
 
-session = scratch3.Session(session_id, username="redspacecat_alt2") #replace with your session_id and username
-conn = session.connect_cloud("997167101") #replace with your project id
+session = scratch3.Session(session_id, username=username) #replace with your session_id and username
+conn = session.connect_cloud("[YOUR PROJECT ID HERE]") #replace with your project id
 
 client = scratch3.CloudRequests(conn)
 
@@ -38,7 +39,7 @@ def generate_image(username, prompt):
     payload["prompt"] = prompt
 
     print("Generating...")
-    response = requests.post("https://reverse.mubi.tech/image/generate", json=payload, headers=headers).text #generate image and get url
+    response = requests.post("https://reverse.mubi.tech/images/generations", json=payload, headers=headers).text #generate image and get url
     try:
         img_url = str(json.loads(response)["url"])
         print("Retrieving image...")  #retrieve image to local computer
